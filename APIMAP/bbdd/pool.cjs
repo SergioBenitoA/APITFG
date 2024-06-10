@@ -34,12 +34,19 @@ async function createReservaSergio(codigo, dni, matricula, npersonas, fechaentra
 async function DeleteUsuarioSergio(correo) {
     const query = `DELETE FROM ${scheme}.usuarios WHERE correo = $1`
     const values = [correo]
-    const result = await db.result(query, values)
-
-    return result.rowCount > 0 ? { response: 'ok' } : { response: 'bad' }
+    
+    console.log(query)
+    try {
+        const result = await db.result(query, values)
+        console.log(result)
+        return result.rowCount > 0 ? { response: 'ok' } : { response: 'bad' }
+    } catch (error) {
+        console.error('Error al ejecutar la consulta DELETE:', error)
+        return { response: 'bad', message: 'Error al ejecutar la consulta DELETE' }
+    }
 }
 
-// CAMBIAR
+
 async function UpdateUsuarioSergio(email, pwd) {
     const query = `UPDATE ${scheme}.usuarios SET contrasena = $1 WHERE correo = $2`
     const values = [pwd, email]

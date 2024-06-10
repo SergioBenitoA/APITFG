@@ -109,7 +109,8 @@ router.put('/actualizarContrasena', async (req, res) => {
             res.status(404).json({Message: false})
         }
     } catch (error) {
-        res.status(500).json({Message: error})
+        console.error('Error al actualizar la contraseña:', error);
+        res.status(500).json({Message: false})
     }
 });
 
@@ -117,10 +118,11 @@ router.put('/actualizarContrasena', async (req, res) => {
 router.delete('/usuariossergio/:correo', async (req, res) => {
     try {
         const { correo } = req.params
+        console.log(correo)
         await pool.DeleteUsuarioSergio(correo)
-        res.status(200).send('Se ha eliminado correctamente')
+        res.status(200).json({Message: true})
     } catch (error) {
-        res.status(404).send('No se ha eliminado el usuario correctamente.')
+        res.status(404).json({Message: false})
     }
 
 })
