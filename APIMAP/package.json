@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.cjs"
   },
-  "author": "Ismael Garcia Montero",
+  "author": "Sergio Benito Aranzana",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "5.1.1",
