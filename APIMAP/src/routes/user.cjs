@@ -127,4 +127,15 @@ router.delete('/usuariossergio/:correo', async (req, res) => {
 
 })
 
+// Obtener las reservas de un usuario
+router.get('/obtenerreservas/:id', async (req, res) => {
+    try {
+        const { id } = req.params
+        const reservas = await pool.getReservasByUser(id)
+        res.status(200).json(reservas)
+    } catch (error) {
+        res.status(404).json({Message: 'Error'})
+    }
+})
+
 module.exports = router

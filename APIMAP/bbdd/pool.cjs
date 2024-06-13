@@ -55,6 +55,11 @@ async function UpdateUsuarioSergio(email, pwd) {
     return result.rowCount > 0 ? { response: 'ok' } : { response: 'bad' }
 }
 
+async function getReservasByUser(id) {
+    const connection = await db.any(`SELECT * FROM ${scheme}.reservas WHERE id_usuario = $1`, [id])
+    return connection
+}
+
 module.exports = {
     getUsersSergio,
     createUserSergio,
@@ -62,5 +67,6 @@ module.exports = {
     getUserByIdSergio,
     getUserByCorreoSergio,
     DeleteUsuarioSergio,
-    UpdateUsuarioSergio
+    UpdateUsuarioSergio,
+    getReservasByUser
 }
