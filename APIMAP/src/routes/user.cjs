@@ -97,11 +97,8 @@ router.post('/reservas', async (req, res) => {
 router.put('/actualizarContrasena', async (req, res) => {
     try {
         const { email, newPassword } = req.body;
-
-        // Encriptar la nueva contraseña antes de guardarla
         const hashedPassword = await encript.encrypt(newPassword);
 
-        // Actualiza la contraseña del usuario correspondiente al correo electrónico
         const user = await pool.UpdateUsuarioSergio(email, hashedPassword)
         if(user.response === 'ok'){
             res.status(200).json({Message: true})
